@@ -5,38 +5,35 @@ Copyright   : Siyang Ling, 2015
 License     : GPL-3
 Maintainer  : hypermania@uchicago.edu
 Stability   : experimental
-Portability : 
+Portability : Unknown
 
-Defines the Ring, Field class, implement rings of integer mod p.
+Defines the Ring, Field class, implement rings of integer mod p. Everything are assumed to be commutative.
 -}
 module Calculator.Ring where
 
 import Data.List
 
-class (Num a) => Field a where
-  {-# MINIMAL zero, one, inverse #-}
+-- | The class Ring: a ring contains zero, one,
+-- additive inverse (neg), multiplicative inverse (inv)
+class (Num a) => Ring a where
+  {-# MINIMAL zero, one, neg, inv #-}
   zero :: a
   one :: a
-  inverse :: a -> a
+  neg :: a -> a
+  inv :: a -> a
 
-data PrimeField = Mod Integer Integer
+-- | ModArith represents arithmetic mod p
+-- Mod n a represents a mod n
+data ModArith = Mod Integer Integer
 
-instance Show PrimeField where
-  show (Mod p a) = show (a `mod` p)
+-- | Shows Mod n a in a (mod n)
+instance Show ModArith where
+  show (Mod n a) = show (a `mod` n)
 
-instance Eq PrimeField where
-  (Mod p a) == (Mod q b) = (p==q) && ((a-b) `mod` p == 0)
+-- | Natural Eq instance
+instance Eq ModArith where
+  (Mod n a) == (Mod m b) = if n==m
+                           then (a-b) `mod` n == 0
+                           else error "Different ring"
 
-instance Num PrimeField where
-  (Mod p a) + (Mod q b) = if p==q
-                          then Mod p ((a+b) `mod` p)
-                          else Mod 0 0
-  (Mod p a) * (Mod q b) = if p==q
-                          then Mod p ((a*b) `mod` p)
-                          else Mod 0 0
-  abs = id
-  signum (Mod p a) = if a==0 then Mod p 0 else Mod p 1
-  fromInteger p = Mod p 0
-  negate (Mod p a) = Mod p ((-a) `mod` p)
-  
 
