@@ -1,3 +1,14 @@
+{-|
+Module      : Calculator.Matrix
+Description : Defines the matrix and relevant implementation
+Copyright   : Siyang Ling, 2015
+License     : GPL-3
+Maintainer  : hypermania@uchicago.edu
+Stability   : experimental
+Portability : 
+
+Defines matrix and matrix-related functions.
+-}
 module Matrix where
 
 import Prelude hiding ((+),(*))
