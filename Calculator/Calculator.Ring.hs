@@ -9,7 +9,7 @@ Portability :
 
 Defines the Ring, Field class, implement rings of integer mod p.
 -}
-module Ring where
+module Calculator.Ring where
 
 import Data.List
 

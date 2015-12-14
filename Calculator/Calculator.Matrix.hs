@@ -9,7 +9,7 @@ Portability :
 
 Defines matrix and matrix-related functions.
 -}
-module Matrix where
+module Calculator.Matrix where
 
 import Prelude hiding ((+),(*))
 

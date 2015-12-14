@@ -9,7 +9,7 @@ Portability :
 
 Defines the polynomial.
 -}
-module Polynomial where
+module Calculator.Polynomial where
 
 
 
